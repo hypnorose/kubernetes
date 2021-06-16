@@ -9,16 +9,12 @@ metadata:
   resourceVersion: "33947"
   uid: 8d98e981-121d-4cd9-879e-f903d84f3439
 spec:
-  clusterIP: 10.103.228.36
-  clusterIPs:
-  - 10.103.228.36
   externalTrafficPolicy: Cluster
   ipFamilies:
   - IPv4
   ipFamilyPolicy: SingleStack
   ports:
-  - nodePort: 32554
-    port: 5000
+  - port: 5000
     protocol: TCP
     targetPort: 5000
   externalIPs:
