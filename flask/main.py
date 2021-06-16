@@ -16,11 +16,11 @@ def fib(n):
 
 @app.route('/')
 def index():
-    return 'Index Page'
+    return 'Index Page 123'
 
 @app.route('/hello')
 def hello():
-    return 'Hello, World'
+    return 'Hello, World 123'
 
 @app.route('/fib/<int:value>')
 def fibbonaci(value):
@@ -38,7 +38,7 @@ def create_cursor(conn):
     return conn.cursor()
 def connection():
     return psycopg2.connect(
-        host="172.18.0.3",
+        host="db",
         database="postgres",
         user="postgres",
         password="zako123"

@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2021-06-16T16:24:11Z"
+  labels:
+    io.kompose.service: flask-app
+  name: flask-app
+  namespace: default
+  resourceVersion: "33947"
+  uid: 8d98e981-121d-4cd9-879e-f903d84f3439
+spec:
+  clusterIP: 10.103.228.36
+  clusterIPs:
+  - 10.103.228.36
+  externalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 32554
+    port: 5000
+    protocol: TCP
+    targetPort: 5000
+  externalIPs:
+  - 192.168.0.189
+  selector:
+    io.kompose.service: flask-app
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer: {}
