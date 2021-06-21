@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"labels":{"k8s-app":"kubernetes-dashboard"},"name":"kubernetes-dashboard","namespace":"kubernetes-dashboard"},"spec":{"ports":[{"port":443,"targetPort":8443}],"selector":{"k8s-app":"kubernetes-dashboard"}}}
+  creationTimestamp: "2021-06-14T15:25:39Z"
+  labels:
+    k8s-app: kubernetes-dashboard
+  name: kubernetes-dashboard
+  namespace: kubernetes-dashboard
+  resourceVersion: "653"
+  uid: 2b88c059-144d-40df-b048-7fb014c098e7
+spec:
+  clusterIP: 10.103.37.17
+  clusterIPs:
+  - 10.103.37.17
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - port: 5002
+    protocol: TCP
+    targetPort: 8443
+  externalIPs:
+  - 192.168.0.189
+  selector:
+    k8s-app: kubernetes-dashboard
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer: {}

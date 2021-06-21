@@ -31,6 +31,17 @@ def fibbonaci(value):
     conn.commit()
     cur.close()
     return str(output)
+@app.route('/show/')
+def show():
+    conn = connection()
+    cur = create_cursor(conn)
+    cur.execute("SELECT * FROM numbers")
+    records = cur.fetchall()
+    s = ""
+    for row in records:
+        print(row)
+        s+=str("Id: " + str(row[0]) + "| Value: " + str(row[1])) + "<br>"
+    return s
 @app.route('/conn')
 def test_conn():
     return str(connection().server_version)

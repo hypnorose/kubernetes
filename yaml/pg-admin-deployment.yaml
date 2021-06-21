@@ -1,3 +1,33 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pg-admin-pv-volume
+  labels:
+    type: local
+    app: pg-admin
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/mnt/pgadmin-data"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pg-admin-pv-claim
+  labels:
+    app: pg-admin
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -24,6 +54,10 @@ spec:
         io.kompose.network/main_network: "true"
         io.kompose.service: pg-admin
     spec:
+      volumes:
+        - name: pg-admindb
+          persistentVolumeClaim:
+            claimName: pg-admin-pv-claim
       containers:
         - env:
             - name: PGADMIN_DEFAULT_EMAIL
@@ -32,8 +66,19 @@ spec:
               value: zako123
           image: dpage/pgadmin4
           name: pg-admin
+
           ports:
             - containerPort: 80
           resources: {}
+          volumeMounts:
+            - mountPath: /var/lib/pgadmin
+              name: pg-admindb
+      initContainers:
+             - name: pgadmin-data-permission-fix
+               image: busybox
+               command: ["/bin/chown", "-R", "5050:5050", "/var/lib/pgadmin"]
+               volumeMounts:
+               - name: pg-admindb
+                 mountPath: /var/lib/pgadmin
       restartPolicy: Always
 status: {}

@@ -1,0 +1,1353 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      kompose.cmd: kompose convert
+      kompose.version: 1.22.0 (955b78124)
+    creationTimestamp: "2021-06-14T18:13:38Z"
+    generateName: db-5cf6447fc6-
+    labels:
+      io.kompose.network/main_network: "true"
+      io.kompose.service: db
+      pod-template-hash: 5cf6447fc6
+    name: db-5cf6447fc6-kxnx2
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: db-5cf6447fc6
+      uid: f2daac95-6141-4800-97bd-7a79309e718c
+    resourceVersion: "26401"
+    uid: cae80100-8235-4450-8996-286ec5778786
+  spec:
+    containers:
+    - env:
+      - name: POSTGRES_PASSWORD
+        value: zako123
+      image: postgres
+      imagePullPolicy: Always
+      name: db
+      ports:
+      - containerPort: 5432
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-x7j6c
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: osboxes
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-x7j6c
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2021-06-16T14:47:18Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2021-06-16T14:50:03Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2021-06-16T14:50:03Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2021-06-16T14:47:18Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: docker://de4fd5e6e7fae565ef005a1ffcc79be11b1e8d74eee01b7f8de56bb793345fd9
+      image: postgres:latest
+      imageID: docker-pullable://postgres@sha256:f82cc0c02e2d69e5a71fbf1268457dcbed8f3d6f5ea4ba6c207c4493aefc479e
+      lastState: {}
+      name: db
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2021-06-16T14:50:02Z"
+    hostIP: 192.168.0.189
+    phase: Running
+    podIP: 10.244.0.17
+    podIPs:
+    - ip: 10.244.0.17
+    qosClass: BestEffort
+    startTime: "2021-06-16T14:47:18Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      kompose.cmd: kompose convert
+      kompose.version: 1.22.0 (955b78124)
+    creationTimestamp: "2021-06-16T15:57:56Z"
+    generateName: flask-app-68b7599794-
+    labels:
+      io.kompose.network/main_network: "true"
+      io.kompose.service: flask-app
+      pod-template-hash: 68b7599794
+    name: flask-app-68b7599794-jwz47
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: flask-app-68b7599794
+      uid: c9e40ca4-3e8d-4a6c-a2ba-317533bed5e5
+    resourceVersion: "31717"
+    uid: 5c60ae83-0e11-4e41-8fb1-5e9d1aa49d40
+  spec:
+    containers:
+    - image: hypnorose/flask_web_app
+      imagePullPolicy: Always
+      name: flask-app
+      ports:
+      - containerPort: 5000
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-g2kfk
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: mikas-lenovo-ideapad-320-15ikb
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-g2kfk
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2021-06-16T15:57:56Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2021-06-16T15:58:03Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2021-06-16T15:58:03Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2021-06-16T15:57:56Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: docker://5bb60bb5c88ec9acc217c8ebb03aa4a24bf1422f9f782912fe01cf1dbe82b219
+      image: hypnorose/flask_web_app:latest
+      imageID: docker-pullable://hypnorose/flask_web_app@sha256:977792bcb48f4731d2f696d58c9420f9423cbd22faffac79a1b1c54cbde3b0d8
+      lastState: {}
+      name: flask-app
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2021-06-16T15:58:02Z"
+    hostIP: 192.168.0.161
+    phase: Running
+    podIP: 10.244.1.3
+    podIPs:
+    - ip: 10.244.1.3
+    qosClass: BestEffort
+    startTime: "2021-06-16T15:57:56Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      kompose.cmd: kompose convert
+      kompose.version: 1.22.0 (955b78124)
+    creationTimestamp: "2021-06-14T18:13:38Z"
+    generateName: pg-admin-66f7686458-
+    labels:
+      io.kompose.network/main_network: "true"
+      io.kompose.service: pg-admin
+      pod-template-hash: 66f7686458
+    name: pg-admin-66f7686458-zq5pd
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: pg-admin-66f7686458
+      uid: 8c4ffb8f-592f-4e85-bb2b-ffd8a091390e
+    resourceVersion: "26269"
+    uid: bcbedc9e-980a-463a-b09a-331c6fa6fe07
+  spec:
+    containers:
+    - env:
+      - name: PGADMIN_DEFAULT_EMAIL
+        value: jakismail@gmail.com
+      - name: PGADMIN_DEFAULT_PASSWORD
+        value: zako123
+      image: dpage/pgadmin4
+      imagePullPolicy: Always
+      name: pg-admin
+      ports:
+      - containerPort: 80
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-6rv5p
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: osboxes
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-6rv5p
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2021-06-16T14:47:18Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2021-06-16T14:48:21Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2021-06-16T14:48:21Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2021-06-16T14:47:18Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: docker://6d30421e6322ca592277b9f68abca82a1d0da26d515cdefb1afef335255b3164
+      image: dpage/pgadmin4:latest
+      imageID: docker-pullable://dpage/pgadmin4@sha256:5b37b0ddb5fc0251cdfab9af606f62c8b5c49b404669b44509b998bb19fd77bb
+      lastState: {}
+      name: pg-admin
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2021-06-16T14:48:19Z"
+    hostIP: 192.168.0.189
+    phase: Running
+    podIP: 10.244.0.15
+    podIPs:
+    - ip: 10.244.0.15
+    qosClass: BestEffort
+    startTime: "2021-06-16T14:47:18Z"
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "1"
+      kompose.cmd: kompose convert
+      kompose.version: 1.22.0 (955b78124)
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{"kompose.cmd":"kompose convert","kompose.version":"1.22.0 (955b78124)"},"creationTimestamp":null,"labels":{"io.kompose.service":"db"},"name":"db","namespace":"default"},"spec":{"replicas":1,"selector":{"matchLabels":{"io.kompose.service":"db"}},"strategy":{},"template":{"metadata":{"annotations":{"kompose.cmd":"kompose convert","kompose.version":"1.22.0 (955b78124)"},"creationTimestamp":null,"labels":{"io.kompose.network/main_network":"true","io.kompose.service":"db"}},"spec":{"containers":[{"env":[{"name":"POSTGRES_PASSWORD","value":"zako123"}],"image":"postgres","name":"db","ports":[{"containerPort":5432}],"resources":{}}],"restartPolicy":"Always"}}},"status":{}}
+    creationTimestamp: "2021-06-14T15:49:26Z"
+    generation: 1
+    labels:
+      io.kompose.service: db
+    name: db
+    namespace: default
+    resourceVersion: "26405"
+    uid: 517c4a6e-323d-4625-9b9e-59777507898a
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        io.kompose.service: db
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          kompose.cmd: kompose convert
+          kompose.version: 1.22.0 (955b78124)
+        creationTimestamp: null
+        labels:
+          io.kompose.network/main_network: "true"
+          io.kompose.service: db
+      spec:
+        containers:
+        - env:
+          - name: POSTGRES_PASSWORD
+            value: zako123
+          image: postgres
+          imagePullPolicy: Always
+          name: db
+          ports:
+          - containerPort: 5432
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2021-06-14T15:49:26Z"
+      lastUpdateTime: "2021-06-14T15:49:31Z"
+      message: ReplicaSet "db-5cf6447fc6" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    - lastTransitionTime: "2021-06-16T14:50:03Z"
+      lastUpdateTime: "2021-06-16T14:50:03Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+    updatedReplicas: 1
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "2"
+      kompose.cmd: kompose convert
+      kompose.version: 1.22.0 (955b78124)
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{"kompose.cmd":"kompose convert","kompose.version":"1.22.0 (955b78124)"},"creationTimestamp":null,"labels":{"io.kompose.service":"flask-app"},"name":"flask-app","namespace":"default"},"spec":{"replicas":1,"selector":{"matchLabels":{"io.kompose.service":"flask-app"}},"strategy":{},"template":{"metadata":{"annotations":{"kompose.cmd":"kompose convert","kompose.version":"1.22.0 (955b78124)"},"creationTimestamp":null,"labels":{"io.kompose.network/main_network":"true","io.kompose.service":"flask-app"}},"spec":{"containers":[{"image":"hypnorose/flask_web_app","name":"flask-app","ports":[{"containerPort":5000}],"resources":{}}],"restartPolicy":"Always"}}},"status":{}}
+    creationTimestamp: "2021-06-14T15:51:34Z"
+    generation: 2
+    labels:
+      io.kompose.service: flask-app
+    name: flask-app
+    namespace: default
+    resourceVersion: "31719"
+    uid: 1b3f3cc4-2b6a-4cc8-8e52-1fce39d34efc
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        io.kompose.service: flask-app
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          kompose.cmd: kompose convert
+          kompose.version: 1.22.0 (955b78124)
+        creationTimestamp: null
+        labels:
+          io.kompose.network/main_network: "true"
+          io.kompose.service: flask-app
+      spec:
+        containers:
+        - image: hypnorose/flask_web_app
+          imagePullPolicy: Always
+          name: flask-app
+          ports:
+          - containerPort: 5000
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2021-06-14T16:12:32Z"
+      lastUpdateTime: "2021-06-14T16:21:12Z"
+      message: ReplicaSet "flask-app-68b7599794" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    - lastTransitionTime: "2021-06-16T15:58:03Z"
+      lastUpdateTime: "2021-06-16T15:58:03Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    observedGeneration: 2
+    readyReplicas: 1
+    replicas: 1
+    updatedReplicas: 1
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "1"
+      kompose.cmd: kompose convert
+      kompose.version: 1.22.0 (955b78124)
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{"kompose.cmd":"kompose convert","kompose.version":"1.22.0 (955b78124)"},"creationTimestamp":null,"labels":{"io.kompose.service":"pg-admin"},"name":"pg-admin","namespace":"default"},"spec":{"replicas":1,"selector":{"matchLabels":{"io.kompose.service":"pg-admin"}},"strategy":{},"template":{"metadata":{"annotations":{"kompose.cmd":"kompose convert","kompose.version":"1.22.0 (955b78124)"},"creationTimestamp":null,"labels":{"io.kompose.network/main_network":"true","io.kompose.service":"pg-admin"}},"spec":{"containers":[{"env":[{"name":"PGADMIN_DEFAULT_EMAIL","value":"jakismail@gmail.com"},{"name":"PGADMIN_DEFAULT_PASSWORD","value":"zako123"}],"image":"dpage/pgadmin4","name":"pg-admin","ports":[{"containerPort":80}],"resources":{}}],"restartPolicy":"Always"}}},"status":{}}
+    creationTimestamp: "2021-06-14T15:51:43Z"
+    generation: 1
+    labels:
+      io.kompose.service: pg-admin
+    name: pg-admin
+    namespace: default
+    resourceVersion: "26274"
+    uid: 61d3cd76-106a-4160-b069-65f2d7e96501
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        io.kompose.service: pg-admin
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          kompose.cmd: kompose convert
+          kompose.version: 1.22.0 (955b78124)
+        creationTimestamp: null
+        labels:
+          io.kompose.network/main_network: "true"
+          io.kompose.service: pg-admin
+      spec:
+        containers:
+        - env:
+          - name: PGADMIN_DEFAULT_EMAIL
+            value: jakismail@gmail.com
+          - name: PGADMIN_DEFAULT_PASSWORD
+            value: zako123
+          image: dpage/pgadmin4
+          imagePullPolicy: Always
+          name: pg-admin
+          ports:
+          - containerPort: 80
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2021-06-14T15:51:43Z"
+      lastUpdateTime: "2021-06-14T15:51:48Z"
+      message: ReplicaSet "pg-admin-66f7686458" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    - lastTransitionTime: "2021-06-16T14:48:22Z"
+      lastUpdateTime: "2021-06-16T14:48:22Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+    updatedReplicas: 1
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "1"
+      kompose.cmd: kompose convert
+      kompose.version: 1.22.0 (955b78124)
+    creationTimestamp: "2021-06-14T15:49:26Z"
+    generation: 1
+    labels:
+      io.kompose.network/main_network: "true"
+      io.kompose.service: db
+      pod-template-hash: 5cf6447fc6
+    name: db-5cf6447fc6
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: db
+      uid: 517c4a6e-323d-4625-9b9e-59777507898a
+    resourceVersion: "26402"
+    uid: f2daac95-6141-4800-97bd-7a79309e718c
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        io.kompose.service: db
+        pod-template-hash: 5cf6447fc6
+    template:
+      metadata:
+        annotations:
+          kompose.cmd: kompose convert
+          kompose.version: 1.22.0 (955b78124)
+        creationTimestamp: null
+        labels:
+          io.kompose.network/main_network: "true"
+          io.kompose.service: db
+          pod-template-hash: 5cf6447fc6
+      spec:
+        containers:
+        - env:
+          - name: POSTGRES_PASSWORD
+            value: zako123
+          image: postgres
+          imagePullPolicy: Always
+          name: db
+          ports:
+          - containerPort: 5432
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    fullyLabeledReplicas: 1
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "2"
+      kompose.cmd: kompose convert
+      kompose.version: 1.22.0 (955b78124)
+    creationTimestamp: "2021-06-14T16:21:05Z"
+    generation: 1
+    labels:
+      io.kompose.network/main_network: "true"
+      io.kompose.service: flask-app
+      pod-template-hash: 68b7599794
+    name: flask-app-68b7599794
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: flask-app
+      uid: 1b3f3cc4-2b6a-4cc8-8e52-1fce39d34efc
+    resourceVersion: "31718"
+    uid: c9e40ca4-3e8d-4a6c-a2ba-317533bed5e5
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        io.kompose.service: flask-app
+        pod-template-hash: 68b7599794
+    template:
+      metadata:
+        annotations:
+          kompose.cmd: kompose convert
+          kompose.version: 1.22.0 (955b78124)
+        creationTimestamp: null
+        labels:
+          io.kompose.network/main_network: "true"
+          io.kompose.service: flask-app
+          pod-template-hash: 68b7599794
+      spec:
+        containers:
+        - image: hypnorose/flask_web_app
+          imagePullPolicy: Always
+          name: flask-app
+          ports:
+          - containerPort: 5000
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    fullyLabeledReplicas: 1
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "1"
+      kompose.cmd: kompose convert
+      kompose.version: 1.22.0 (955b78124)
+    creationTimestamp: "2021-06-14T15:51:34Z"
+    generation: 2
+    labels:
+      io.kompose.network/main_network: "true"
+      io.kompose.service: flask-app
+      pod-template-hash: 7f6856649b
+    name: flask-app-7f6856649b
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: flask-app
+      uid: 1b3f3cc4-2b6a-4cc8-8e52-1fce39d34efc
+    resourceVersion: "5183"
+    uid: 6fc0ab16-16fd-4ab4-87e4-ffa1d3c65c36
+  spec:
+    replicas: 0
+    selector:
+      matchLabels:
+        io.kompose.service: flask-app
+        pod-template-hash: 7f6856649b
+    template:
+      metadata:
+        annotations:
+          kompose.cmd: kompose convert
+          kompose.version: 1.22.0 (955b78124)
+        creationTimestamp: null
+        labels:
+          io.kompose.network/main_network: "true"
+          io.kompose.service: flask-app
+          pod-template-hash: 7f6856649b
+      spec:
+        containers:
+        - image: flask_web_app
+          imagePullPolicy: Always
+          name: flask-app
+          ports:
+          - containerPort: 5000
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    observedGeneration: 2
+    replicas: 0
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "1"
+      kompose.cmd: kompose convert
+      kompose.version: 1.22.0 (955b78124)
+    creationTimestamp: "2021-06-14T15:51:43Z"
+    generation: 1
+    labels:
+      io.kompose.network/main_network: "true"
+      io.kompose.service: pg-admin
+      pod-template-hash: 66f7686458
+    name: pg-admin-66f7686458
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: pg-admin
+      uid: 61d3cd76-106a-4160-b069-65f2d7e96501
+    resourceVersion: "26272"
+    uid: 8c4ffb8f-592f-4e85-bb2b-ffd8a091390e
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        io.kompose.service: pg-admin
+        pod-template-hash: 66f7686458
+    template:
+      metadata:
+        annotations:
+          kompose.cmd: kompose convert
+          kompose.version: 1.22.0 (955b78124)
+        creationTimestamp: null
+        labels:
+          io.kompose.network/main_network: "true"
+          io.kompose.service: pg-admin
+          pod-template-hash: 66f7686458
+      spec:
+        containers:
+        - env:
+          - name: PGADMIN_DEFAULT_EMAIL
+            value: jakismail@gmail.com
+          - name: PGADMIN_DEFAULT_PASSWORD
+            value: zako123
+          image: dpage/pgadmin4
+          imagePullPolicy: Always
+          name: pg-admin
+          ports:
+          - containerPort: 80
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    fullyLabeledReplicas: 1
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+- apiVersion: v1
+  kind: Node
+  metadata:
+    annotations:
+      flannel.alpha.coreos.com/backend-data: '{"VtepMAC":"4e:fd:cb:12:b2:96"}'
+      flannel.alpha.coreos.com/backend-type: vxlan
+      flannel.alpha.coreos.com/kube-subnet-manager: "true"
+      flannel.alpha.coreos.com/public-ip: 192.168.0.161
+      kubeadm.alpha.kubernetes.io/cri-socket: /var/run/dockershim.sock
+      node.alpha.kubernetes.io/ttl: "0"
+      volumes.kubernetes.io/controller-managed-attach-detach: "true"
+    creationTimestamp: "2021-06-14T15:25:00Z"
+    labels:
+      beta.kubernetes.io/arch: amd64
+      beta.kubernetes.io/os: linux
+      kubernetes.io/arch: amd64
+      kubernetes.io/hostname: mikas-lenovo-ideapad-320-15ikb
+      kubernetes.io/os: linux
+    name: mikas-lenovo-ideapad-320-15ikb
+    resourceVersion: "37756"
+    uid: fb83feb8-dd60-44e9-adf3-b4413bca3aaf
+  spec:
+    podCIDR: 10.244.1.0/24
+    podCIDRs:
+    - 10.244.1.0/24
+  status:
+    addresses:
+    - address: 192.168.0.161
+      type: InternalIP
+    - address: mikas-lenovo-ideapad-320-15ikb
+      type: Hostname
+    allocatable:
+      cpu: "8"
+      ephemeral-storage: "22430623298"
+      hugepages-1Gi: "0"
+      hugepages-2Mi: "0"
+      memory: 11970860Ki
+      pods: "110"
+    capacity:
+      cpu: "8"
+      ephemeral-storage: 24338784Ki
+      hugepages-1Gi: "0"
+      hugepages-2Mi: "0"
+      memory: 12073260Ki
+      pods: "110"
+    conditions:
+    - lastHeartbeatTime: "2021-06-16T17:08:48Z"
+      lastTransitionTime: "2021-06-16T15:55:35Z"
+      message: kubelet has sufficient memory available
+      reason: KubeletHasSufficientMemory
+      status: "False"
+      type: MemoryPressure
+    - lastHeartbeatTime: "2021-06-16T17:08:48Z"
+      lastTransitionTime: "2021-06-16T15:55:35Z"
+      message: kubelet has no disk pressure
+      reason: KubeletHasNoDiskPressure
+      status: "False"
+      type: DiskPressure
+    - lastHeartbeatTime: "2021-06-16T17:08:48Z"
+      lastTransitionTime: "2021-06-16T15:55:35Z"
+      message: kubelet has sufficient PID available
+      reason: KubeletHasSufficientPID
+      status: "False"
+      type: PIDPressure
+    - lastHeartbeatTime: "2021-06-16T17:08:48Z"
+      lastTransitionTime: "2021-06-16T15:55:45Z"
+      message: kubelet is posting ready status. AppArmor enabled
+      reason: KubeletReady
+      status: "True"
+      type: Ready
+    daemonEndpoints:
+      kubeletEndpoint:
+        Port: 10250
+    images:
+    - names:
+      - us.gcr.io/k8s-artifacts-prod/ingress-nginx/controller@sha256:0e072dddd1f7f8fc8909a2ca6f65e76c5f0d2fcfb8be47935ae3457e8bbceb20
+      sizeBytes: 328878603
+    - names:
+      - postgres@sha256:117c3ea384ce21421541515edfb11f2997b2c853d4fdd58a455b77664c1adc20
+      - postgres:latest
+      sizeBytes: 314684445
+    - names:
+      - k8s.gcr.io/etcd@sha256:4ad90a11b55313b182afc186b9876c8e891531b8db4c9bf1541953021618d0e2
+      - k8s.gcr.io/etcd:3.4.13-0
+      sizeBytes: 253392289
+    - names:
+      - dpage/pgadmin4@sha256:5b37b0ddb5fc0251cdfab9af606f62c8b5c49b404669b44509b998bb19fd77bb
+      - dpage/pgadmin4:latest
+      sizeBytes: 243897730
+    - names:
+      - kubernetesui/dashboard@sha256:148991563e374c83b75e8c51bca75f512d4f006ddc791e96a91f1c7420b60bd9
+      - kubernetesui/dashboard:v2.2.0
+      sizeBytes: 225135791
+    - names:
+      - hypnorose/flask_web_app@sha256:977792bcb48f4731d2f696d58c9420f9423cbd22faffac79a1b1c54cbde3b0d8
+      - hypnorose/flask_web_app:latest
+      sizeBytes: 135826128
+    - names:
+      - hypnorose/flask_web_app@sha256:df4dd4c932920c91d9ac76b022af6704774dd557138048d9fe8e5b0bf559ae56
+      sizeBytes: 135826128
+    - names:
+      - python-app:1.0
+      sizeBytes: 135826120
+    - names:
+      - envoyproxy/envoy@sha256:55d35e368436519136dbd978fa0682c49d8ab99e4d768413510f226762b30b07
+      - envoyproxy/envoy:v1.18.3
+      sizeBytes: 134840899
+    - names:
+      - k8s.gcr.io/kube-proxy@sha256:53af05c2a6cddd32cebf5856f71994f5d41ef2a62824b87f140f2087f91e4a38
+      - k8s.gcr.io/kube-proxy:v1.21.1
+      sizeBytes: 130788187
+    - names:
+      - k8s.gcr.io/kube-apiserver@sha256:53a13cd1588391888c5a8ac4cef13d3ee6d229cd904038936731af7131d193a9
+      - k8s.gcr.io/kube-apiserver:v1.21.1
+      sizeBytes: 125612423
+    - names:
+      - k8s.gcr.io/kube-controller-manager@sha256:3daf9c9f9fe24c3a7b92ce864ef2d8d610c84124cc7d98e68fdbe94038337228
+      - k8s.gcr.io/kube-controller-manager:v1.21.1
+      sizeBytes: 119825302
+    - names:
+      - weaveworks/weave-kube@sha256:d797338e7beb17222e10757b71400d8471bdbd9be13b5da38ce2ebf597fb4e63
+      - weaveworks/weave-kube:2.8.1
+      sizeBytes: 89037656
+    - names:
+      - quay.io/coreos/flannel@sha256:4a330b2f2e74046e493b2edc30d61fdebbdddaaedcb32d62736f25be8d3c64d5
+      - quay.io/coreos/flannel:v0.14.0
+      sizeBytes: 67927607
+    - names:
+      - quay.io/coreos/flannel@sha256:7806805c93b20a168d0bbbd25c6a213f00ac58a511c47e8fa6409543528a204e
+      - quay.io/coreos/flannel:v0.11.0-amd64
+      sizeBytes: 52567296
+    - names:
+      - k8s.gcr.io/kube-scheduler@sha256:a8c4084db3b381f0806ea563c7ec842cc3604c57722a916c91fb59b00ff67d63
+      - k8s.gcr.io/kube-scheduler:v1.21.1
+      sizeBytes: 50635642
+    - names:
+      - jettech/kube-webhook-certgen@sha256:da8122a78d7387909cf34a0f34db0cce672da1379ee4fd57c626a4afe9ac12b7
+      - jettech/kube-webhook-certgen:v1.2.2
+      sizeBytes: 49003629
+    - names:
+      - k8s.gcr.io/coredns/coredns@sha256:cc8fb77bc2a0541949d1d9320a641b82fd392b0d3d8145469ca4709ae769980e
+      - k8s.gcr.io/coredns/coredns:v1.8.0
+      sizeBytes: 42454755
+    - names:
+      - projectcontour/contour@sha256:5fe195829a2f0ba71eefdbbcba612213ddd0307a2b38018f4386371829b44241
+      - projectcontour/contour:v1.16.0
+      sizeBytes: 42258432
+    - names:
+      - weaveworks/weave-npc@sha256:38d3e30a97a2260558f8deb0fc4c079442f7347f27c86660dbfc8ca91674f14c
+      - weaveworks/weave-npc:2.8.1
+      sizeBytes: 39273789
+    - names:
+      - kubernetesui/metrics-scraper@sha256:1f977343873ed0e2efd4916a6b2f3075f310ff6fe42ee098f54fc58aa7a28ab7
+      - kubernetesui/metrics-scraper:v1.0.6
+      sizeBytes: 34548789
+    - names:
+      - k8s.gcr.io/pause@sha256:6c3835cab3980f11b83277305d0d736051c32b17606f5ec59f1dda67c9ba3810
+      - k8s.gcr.io/pause:3.4.1
+      sizeBytes: 682696
+    - names:
+      - hello-world@sha256:9f6ad537c5132bcce57f7a0a20e317228d382c3cd61edae14650eec68b2b345c
+      - hello-world:latest
+      sizeBytes: 13336
+    nodeInfo:
+      architecture: amd64
+      bootID: 6452f047-4614-4765-b694-0198df71c387
+      containerRuntimeVersion: docker://20.10.7
+      kernelVersion: 4.15.0-122-generic
+      kubeProxyVersion: v1.21.1
+      kubeletVersion: v1.21.1
+      machineID: f3d85c83fd6e458aba76dbf56f683032
+      operatingSystem: linux
+      osImage: Linux Mint 19.2
+      systemUUID: 8EC1FD41-D967-11E7-8A95-54E1ADE7741C
+- apiVersion: v1
+  kind: Node
+  metadata:
+    annotations:
+      kubeadm.alpha.kubernetes.io/cri-socket: /var/run/dockershim.sock
+      node.alpha.kubernetes.io/ttl: "0"
+      volumes.kubernetes.io/controller-managed-attach-detach: "true"
+    creationTimestamp: "2021-06-14T17:40:53Z"
+    labels:
+      beta.kubernetes.io/arch: amd64
+      beta.kubernetes.io/os: linux
+      kubernetes.io/arch: amd64
+      kubernetes.io/hostname: mx
+      kubernetes.io/os: linux
+    name: mx
+    resourceVersion: "25386"
+    uid: 012fb188-fd30-43fd-b881-ee6269f49b7b
+  spec:
+    podCIDR: 10.244.2.0/24
+    podCIDRs:
+    - 10.244.2.0/24
+    taints:
+    - effect: NoSchedule
+      key: node.kubernetes.io/unreachable
+      timeAdded: "2021-06-14T18:08:43Z"
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      timeAdded: "2021-06-16T14:37:45Z"
+  status:
+    addresses:
+    - address: 192.168.0.128
+      type: InternalIP
+    - address: mx
+      type: Hostname
+    allocatable:
+      cpu: "4"
+      ephemeral-storage: "450765227696"
+      hugepages-1Gi: "0"
+      hugepages-2Mi: "0"
+      memory: 7751704Ki
+      pods: "110"
+    capacity:
+      cpu: "4"
+      ephemeral-storage: 489111576Ki
+      hugepages-1Gi: "0"
+      hugepages-2Mi: "0"
+      memory: 7854104Ki
+      pods: "110"
+    conditions:
+    - lastHeartbeatTime: "2021-06-14T18:06:14Z"
+      lastTransitionTime: "2021-06-14T18:08:43Z"
+      message: Kubelet stopped posting node status.
+      reason: NodeStatusUnknown
+      status: Unknown
+      type: MemoryPressure
+    - lastHeartbeatTime: "2021-06-14T18:06:14Z"
+      lastTransitionTime: "2021-06-14T18:08:43Z"
+      message: Kubelet stopped posting node status.
+      reason: NodeStatusUnknown
+      status: Unknown
+      type: DiskPressure
+    - lastHeartbeatTime: "2021-06-14T18:06:14Z"
+      lastTransitionTime: "2021-06-14T18:08:43Z"
+      message: Kubelet stopped posting node status.
+      reason: NodeStatusUnknown
+      status: Unknown
+      type: PIDPressure
+    - lastHeartbeatTime: "2021-06-14T18:06:14Z"
+      lastTransitionTime: "2021-06-14T18:08:43Z"
+      message: Kubelet stopped posting node status.
+      reason: NodeStatusUnknown
+      status: Unknown
+      type: Ready
+    daemonEndpoints:
+      kubeletEndpoint:
+        Port: 10250
+    images:
+    - names:
+      - kindest/node@sha256:fae9a58f17f18f06aeac9772ca8b5ac680ebbed985e266f711d936e91d113bad
+      sizeBytes: 1119656504
+    - names:
+      - postgres@sha256:117c3ea384ce21421541515edfb11f2997b2c853d4fdd58a455b77664c1adc20
+      - postgres:latest
+      sizeBytes: 314684445
+    - names:
+      - k8s.gcr.io/etcd@sha256:4ad90a11b55313b182afc186b9876c8e891531b8db4c9bf1541953021618d0e2
+      - k8s.gcr.io/etcd:3.4.13-0
+      sizeBytes: 253392289
+    - names:
+      - dpage/pgadmin4@sha256:5b37b0ddb5fc0251cdfab9af606f62c8b5c49b404669b44509b998bb19fd77bb
+      - dpage/pgadmin4:latest
+      sizeBytes: 243897730
+    - names:
+      - kubernetesui/dashboard@sha256:06868692fb9a7f2ede1a06de1b7b32afabc40ec739c1181d83b5ed3eb147ec6e
+      - kubernetesui/dashboard:v2.0.0
+      sizeBytes: 221895031
+    - names:
+      - flask_web_app:latest
+      sizeBytes: 135826122
+    - names:
+      - k8s.gcr.io/kube-proxy@sha256:53af05c2a6cddd32cebf5856f71994f5d41ef2a62824b87f140f2087f91e4a38
+      - k8s.gcr.io/kube-proxy:v1.21.1
+      sizeBytes: 130788187
+    - names:
+      - k8s.gcr.io/kube-apiserver@sha256:53a13cd1588391888c5a8ac4cef13d3ee6d229cd904038936731af7131d193a9
+      - k8s.gcr.io/kube-apiserver:v1.21.1
+      sizeBytes: 125612423
+    - names:
+      - k8s.gcr.io/kube-apiserver@sha256:828fefd9598ed865d45364d1be859c87aabfa445b03b350e3440d143bd21bca9
+      - k8s.gcr.io/kube-apiserver:v1.21.0
+      sizeBytes: 125591921
+    - names:
+      - k8s.gcr.io/kube-proxy@sha256:326199e7a5232bf7531a3058e9811c925b07085f33fa882558cc4e89379b9109
+      - k8s.gcr.io/kube-proxy:v1.21.0
+      sizeBytes: 122238196
+    - names:
+      - k8s.gcr.io/kube-controller-manager@sha256:3daf9c9f9fe24c3a7b92ce864ef2d8d610c84124cc7d98e68fdbe94038337228
+      - k8s.gcr.io/kube-controller-manager:v1.21.1
+      sizeBytes: 119825302
+    - names:
+      - k8s.gcr.io/kube-controller-manager@sha256:92414283b8a8ba52ad04691a7124aea042e3f2ec3f6384efc5b08da3e100442d
+      - k8s.gcr.io/kube-controller-manager:v1.21.0
+      sizeBytes: 119808868
+    - names:
+      - python@sha256:c9dc8cd1171771e7f0def12be61d7bb340480e73b4e78acf3464ed0c3347dabd
+      - python:3.8-slim-buster
+      sizeBytes: 114280575
+    - names:
+      - quay.io/coreos/flannel@sha256:4a330b2f2e74046e493b2edc30d61fdebbdddaaedcb32d62736f25be8d3c64d5
+      - quay.io/coreos/flannel:v0.14.0
+      sizeBytes: 67927607
+    - names:
+      - quay.io/coreos/flannel@sha256:7806805c93b20a168d0bbbd25c6a213f00ac58a511c47e8fa6409543528a204e
+      - quay.io/coreos/flannel:v0.11.0-amd64
+      sizeBytes: 52567296
+    - names:
+      - k8s.gcr.io/kube-scheduler@sha256:a8c4084db3b381f0806ea563c7ec842cc3604c57722a916c91fb59b00ff67d63
+      - k8s.gcr.io/kube-scheduler:v1.21.1
+      sizeBytes: 50635642
+    - names:
+      - k8s.gcr.io/kube-scheduler@sha256:1bcafcb4a0c3105fe08018f34c0e43a10a5d696fc8598b1c705116bcc773726f
+      - k8s.gcr.io/kube-scheduler:v1.21.0
+      sizeBytes: 50631537
+    - names:
+      - k8s.gcr.io/coredns/coredns@sha256:cc8fb77bc2a0541949d1d9320a641b82fd392b0d3d8145469ca4709ae769980e
+      - k8s.gcr.io/coredns/coredns:v1.8.0
+      sizeBytes: 42454755
+    - names:
+      - kubernetesui/metrics-scraper@sha256:555981a24f184420f3be0c79d4efb6c948a85cfce84034f85a563f4151a81cbf
+      - kubernetesui/metrics-scraper:v1.0.4
+      sizeBytes: 36937728
+    - names:
+      - k8s.gcr.io/pause@sha256:6c3835cab3980f11b83277305d0d736051c32b17606f5ec59f1dda67c9ba3810
+      - k8s.gcr.io/pause:3.4.1
+      sizeBytes: 682696
+    - names:
+      - hello-world@sha256:9f6ad537c5132bcce57f7a0a20e317228d382c3cd61edae14650eec68b2b345c
+      - hello-world:latest
+      sizeBytes: 13336
+    nodeInfo:
+      architecture: amd64
+      bootID: 1e8e7f98-0d8e-4894-9a7d-f33a4dd38130
+      containerRuntimeVersion: docker://20.10.7
+      kernelVersion: 4.19.0-16-amd64
+      kubeProxyVersion: v1.21.1
+      kubeletVersion: v1.21.1
+      machineID: 4684e70f922785144f61d4b66059b3c0
+      operatingSystem: linux
+      osImage: Debian GNU/Linux 10 (buster)
+      systemUUID: d8783481-520d-11cb-a9dc-b8a6b15ba2ec
+- apiVersion: v1
+  kind: Node
+  metadata:
+    annotations:
+      flannel.alpha.coreos.com/backend-data: '{"VtepMAC":"82:0b:e7:f3:91:1d"}'
+      flannel.alpha.coreos.com/backend-type: vxlan
+      flannel.alpha.coreos.com/kube-subnet-manager: "true"
+      flannel.alpha.coreos.com/public-ip: 192.168.0.189
+      kubeadm.alpha.kubernetes.io/cri-socket: /var/run/dockershim.sock
+      node.alpha.kubernetes.io/ttl: "0"
+      volumes.kubernetes.io/controller-managed-attach-detach: "true"
+    creationTimestamp: "2021-06-14T15:24:32Z"
+    labels:
+      beta.kubernetes.io/arch: amd64
+      beta.kubernetes.io/os: linux
+      kubernetes.io/arch: amd64
+      kubernetes.io/hostname: osboxes
+      kubernetes.io/os: linux
+      node-role.kubernetes.io/control-plane: ""
+      node-role.kubernetes.io/master: ""
+      node.kubernetes.io/exclude-from-external-load-balancers: ""
+    name: osboxes
+    resourceVersion: "37747"
+    uid: 78b3128c-2073-4d1f-88ea-711e501ce2b7
+  spec:
+    podCIDR: 10.244.0.0/24
+    podCIDRs:
+    - 10.244.0.0/24
+  status:
+    addresses:
+    - address: 192.168.0.189
+      type: InternalIP
+    - address: osboxes
+      type: Hostname
+    allocatable:
+      cpu: "2"
+      ephemeral-storage: "208870844890"
+      hugepages-2Mi: "0"
+      memory: 7640264Ki
+      pods: "110"
+    capacity:
+      cpu: "2"
+      ephemeral-storage: 226639372Ki
+      hugepages-2Mi: "0"
+      memory: 7742664Ki
+      pods: "110"
+    conditions:
+    - lastHeartbeatTime: "2021-06-16T17:08:41Z"
+      lastTransitionTime: "2021-06-14T15:24:27Z"
+      message: kubelet has sufficient memory available
+      reason: KubeletHasSufficientMemory
+      status: "False"
+      type: MemoryPressure
+    - lastHeartbeatTime: "2021-06-16T17:08:41Z"
+      lastTransitionTime: "2021-06-14T15:24:27Z"
+      message: kubelet has no disk pressure
+      reason: KubeletHasNoDiskPressure
+      status: "False"
+      type: DiskPressure
+    - lastHeartbeatTime: "2021-06-16T17:08:41Z"
+      lastTransitionTime: "2021-06-14T15:24:27Z"
+      message: kubelet has sufficient PID available
+      reason: KubeletHasSufficientPID
+      status: "False"
+      type: PIDPressure
+    - lastHeartbeatTime: "2021-06-16T17:08:41Z"
+      lastTransitionTime: "2021-06-14T15:24:50Z"
+      message: kubelet is posting ready status. AppArmor enabled
+      reason: KubeletReady
+      status: "True"
+      type: Ready
+    daemonEndpoints:
+      kubeletEndpoint:
+        Port: 10250
+    images:
+    - names:
+      - us.gcr.io/k8s-artifacts-prod/ingress-nginx/controller@sha256:0e072dddd1f7f8fc8909a2ca6f65e76c5f0d2fcfb8be47935ae3457e8bbceb20
+      sizeBytes: 328878603
+    - names:
+      - postgres@sha256:f82cc0c02e2d69e5a71fbf1268457dcbed8f3d6f5ea4ba6c207c4493aefc479e
+      - postgres:latest
+      sizeBytes: 314684445
+    - names:
+      - k8s.gcr.io/etcd@sha256:4ad90a11b55313b182afc186b9876c8e891531b8db4c9bf1541953021618d0e2
+      - k8s.gcr.io/etcd:3.4.13-0
+      sizeBytes: 253392289
+    - names:
+      - dpage/pgadmin4@sha256:5b37b0ddb5fc0251cdfab9af606f62c8b5c49b404669b44509b998bb19fd77bb
+      - dpage/pgadmin4:latest
+      sizeBytes: 243897730
+    - names:
+      - kubernetesui/dashboard@sha256:148991563e374c83b75e8c51bca75f512d4f006ddc791e96a91f1c7420b60bd9
+      - kubernetesui/dashboard:v2.2.0
+      sizeBytes: 225135791
+    - names:
+      - hypnorose/flask_web_app@sha256:977792bcb48f4731d2f696d58c9420f9423cbd22faffac79a1b1c54cbde3b0d8
+      - hypnorose/flask_web_app:latest
+      sizeBytes: 135826128
+    - names:
+      - hypnorose/flask_web_app@sha256:df4dd4c932920c91d9ac76b022af6704774dd557138048d9fe8e5b0bf559ae56
+      - flask_web_app:latest
+      sizeBytes: 135826128
+    - names:
+      - envoyproxy/envoy@sha256:55d35e368436519136dbd978fa0682c49d8ab99e4d768413510f226762b30b07
+      - envoyproxy/envoy:v1.18.3
+      sizeBytes: 134840899
+    - names:
+      - k8s.gcr.io/kube-proxy@sha256:53af05c2a6cddd32cebf5856f71994f5d41ef2a62824b87f140f2087f91e4a38
+      - k8s.gcr.io/kube-proxy:v1.21.1
+      sizeBytes: 130788187
+    - names:
+      - k8s.gcr.io/kube-apiserver@sha256:53a13cd1588391888c5a8ac4cef13d3ee6d229cd904038936731af7131d193a9
+      - k8s.gcr.io/kube-apiserver:v1.21.1
+      sizeBytes: 125612423
+    - names:
+      - k8s.gcr.io/kube-controller-manager@sha256:3daf9c9f9fe24c3a7b92ce864ef2d8d610c84124cc7d98e68fdbe94038337228
+      - k8s.gcr.io/kube-controller-manager:v1.21.1
+      sizeBytes: 119825302
+    - names:
+      - python@sha256:c9dc8cd1171771e7f0def12be61d7bb340480e73b4e78acf3464ed0c3347dabd
+      - python:3.8-slim-buster
+      sizeBytes: 114280575
+    - names:
+      - weaveworks/weave-kube@sha256:d797338e7beb17222e10757b71400d8471bdbd9be13b5da38ce2ebf597fb4e63
+      - weaveworks/weave-kube:2.8.1
+      sizeBytes: 89037656
+    - names:
+      - quay.io/coreos/flannel@sha256:7806805c93b20a168d0bbbd25c6a213f00ac58a511c47e8fa6409543528a204e
+      - quay.io/coreos/flannel:v0.11.0-amd64
+      sizeBytes: 52567296
+    - names:
+      - k8s.gcr.io/kube-scheduler@sha256:a8c4084db3b381f0806ea563c7ec842cc3604c57722a916c91fb59b00ff67d63
+      - k8s.gcr.io/kube-scheduler:v1.21.1
+      sizeBytes: 50635642
+    - names:
+      - k8s.gcr.io/coredns/coredns@sha256:cc8fb77bc2a0541949d1d9320a641b82fd392b0d3d8145469ca4709ae769980e
+      - k8s.gcr.io/coredns/coredns:v1.8.0
+      sizeBytes: 42454755
+    - names:
+      - projectcontour/contour@sha256:5fe195829a2f0ba71eefdbbcba612213ddd0307a2b38018f4386371829b44241
+      - projectcontour/contour:v1.16.0
+      sizeBytes: 42258432
+    - names:
+      - weaveworks/weave-npc@sha256:38d3e30a97a2260558f8deb0fc4c079442f7347f27c86660dbfc8ca91674f14c
+      - weaveworks/weave-npc:2.8.1
+      sizeBytes: 39273789
+    - names:
+      - kubernetesui/metrics-scraper@sha256:1f977343873ed0e2efd4916a6b2f3075f310ff6fe42ee098f54fc58aa7a28ab7
+      - kubernetesui/metrics-scraper:v1.0.6
+      sizeBytes: 34548789
+    - names:
+      - k8s.gcr.io/pause@sha256:6c3835cab3980f11b83277305d0d736051c32b17606f5ec59f1dda67c9ba3810
+      - k8s.gcr.io/pause:3.4.1
+      sizeBytes: 682696
+    nodeInfo:
+      architecture: amd64
+      bootID: a41f355a-7311-46db-a6d6-53bbd395be37
+      containerRuntimeVersion: docker://20.10.7
+      kernelVersion: 5.4.0-26-generic
+      kubeProxyVersion: v1.21.1
+      kubeletVersion: v1.21.1
+      machineID: c319ab13fdd74f3c9b3dd93fd2549ddf
+      operatingSystem: linux
+      osImage: Ubuntu 20.04 LTS
+      systemUUID: 11a90ad0-bda9-914f-8c6d-fe49a85690da
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
